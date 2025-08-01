@@ -1,0 +1,22 @@
+###files
+*.tfstate
+*.tfstate.backup
+.terraform
+*.iml
+*.tfvars
+
+###folders
+.terraform/
+my_secaws.tfvars
+terraform.tfvars
+
+# Terraform crash logs
+crash.log
+
+# Terraform override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+.terragrunt-cache/
