@@ -1,10 +1,68 @@
 #  DevOps Lab on AWS EKS with Terraform
+### English
+
+##  Project: `devops-lab-eks`
+
+This is a DevOps project to deploy a complete cloud infrastructure on AWS using Terraform. It includes deploying a Kubernetes cluster (EKS), network infrastructure, IAM roles, and provisioning for GitOps.
+## Project structure
+
+```bash
+devops-lab-eks/
+├── environments/
+│   └── dev/
+│       ├── main.tf
+│       ├── variables.tf
+│       ├── outputs.tf
+│       ├── terraform.tfvars
+│       └── backend.tf
+├── modules/
+│   ├── networks/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── outputs.tf
+│   │   └── README.md
+│   └── eks/
+│       ├── main.tf
+│       ├── variables.tf
+│       ├── outputs.tf
+│       └── README.md
+```
+
+### Network module (`modules/networks`)
+
+- VPC
+- Public и Private Subnets
+- Internet Gateway
+- NAT Gateway
+- Route Tables and Associations
+
+###  Module EKS (`modules/eks`)
+- EKS Cluster
+- Node Group (2 nodes t3.small)
+- IAM roles and policies for cluster and nodes
+
+###  IAM
+- `eks_cluster_role` with politics `AmazonEKSClusterPolicy`
+- `eks_nodes_role` with politics:
+  - `AmazonEKSWorkerNodePolicy`
+  - `AmazonEC2ContainerRegistryReadOnly`
+  - `AmazonEKS_CNI_Policy`
+
+###  Terraform
+- Version Terraform: `>=1.3.0`
+- AWS Provider: `~> 6.3`
+- Region: `eu-central-1`
+- Backend: local
+- Profile: `terraform_user`
+
+
+
 
 
 ### Russian
 ##  Проект: `devops-lab-eks`
 
-Этот DevOps-проект для развёртывания полной облачной инфраструктуры на AWS с помощью Terraform. Он включает развёртывание Kubernetes-кластера (EKS), сетевой инфраструктуры, IAM ролей и подготовку к GitOps через ArgoCD.
+This DevOps project is for deploying a full cloud operation on AWS using Terraform. It includes deploying a Kubernetes cluster (EKS), networking, IAM roles, and GitOps preparation.
 
 ##  Структура проекта
 
@@ -85,61 +143,6 @@ devops-lab-eks/
 #####################################################################################################################################
 
 
-### English
 
-##  Project: `devops-lab-eks`
-
-This is a DevOps project to deploy a complete cloud infrastructure on AWS using Terraform. It includes deploying a Kubernetes cluster (EKS), network infrastructure, IAM roles, and provisioning for GitOps via ArgoCD.
-
-## Project structure
-
-```bash
-devops-lab-eks/
-├── environments/
-│   └── dev/
-│       ├── main.tf
-│       ├── variables.tf
-│       ├── outputs.tf
-│       ├── terraform.tfvars
-│       └── backend.tf
-├── modules/
-│   ├── networks/
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   ├── outputs.tf
-│   │   └── README.md
-│   └── eks/
-│       ├── main.tf
-│       ├── variables.tf
-│       ├── outputs.tf
-│       └── README.md
-```
-
-### Network module (`modules/networks`)
-
-- VPC
-- Public и Private Subnets
-- Internet Gateway
-- NAT Gateway
-- Route Tables and Associations
-
-###  Module EKS (`modules/eks`)
-- EKS Cluster
-- Node Group (2 nodes t3.small)
-- IAM roles and policies for cluster and nodes
-
-###  IAM
-- `eks_cluster_role` with politics `AmazonEKSClusterPolicy`
-- `eks_nodes_role` with politics:
-  - `AmazonEKSWorkerNodePolicy`
-  - `AmazonEC2ContainerRegistryReadOnly`
-  - `AmazonEKS_CNI_Policy`
-
-###  Terraform
-- Version Terraform: `>=1.3.0`
-- AWS Provider: `~> 6.3`
-- Region: `eu-central-1`
-- Backend: local
-- Profile: `terraform_user`
 
 ---
